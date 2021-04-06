@@ -4,7 +4,8 @@
 	"description": "A Simple Music Player for Plex Servers",
 	"main": "index.js",
 	"scripts": {
-		"test": "electron ./src/"
+		"test": "electron ./src/",
+		"format": "run format"
 	},
 	"repository": {
 		"type": "git",
