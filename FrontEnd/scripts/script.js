@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-const observer = lozad();
+const observer = loader();
 
 observer.observe();
 
@@ -23,8 +23,8 @@ async function getTracks(key) {
 async function onload() {
 	gotoAlbums();
 	$(".player").hide();
-	document.getElementById("playerControler").addEventListener("play", function () {
-		document.getElementById("playerControler").addEventListener("ended", nextTrack);
+	document.getElementById("playerController").addEventListener("play", function () {
+		document.getElementById("playerController").addEventListener("ended", nextTrack);
 	});
 
 	document.getElementById("songProgress").addEventListener("mousedown", seek);
@@ -34,7 +34,7 @@ async function onload() {
 	var allImages = "";
 
 	for (let i = 0; i < allAlbums.length; i = i + 1) {
-		allImages += '<div class="column"><div class="cover" onclick="albumPage(this, ' + allAlbums[i].key + ');"><img class="lozad" loading="lazy" src="' + allAlbums[i].cover + '" onerror="this.onerror=null; this.src=\'track.svg\'"></div><div class="info"><h2>' + allAlbums[i].title + "</h2><p>" + allAlbums[i].artist + "</p></div></div>";
+		allImages += '<div class="column"><div class="cover" onclick="albumPage(this, ' + allAlbums[i].key + ');"><img class="loader" loading="lazy" src="' + allAlbums[i].cover + '" onerror="this.onerror=null; this.src=\'track.svg\'"></div><div class="info"><h2>' + allAlbums[i].title + "</h2><p>" + allAlbums[i].artist + "</p></div></div>";
 	}
 
 	document.getElementById("gsearch").addEventListener("input", (event) => {
@@ -87,14 +87,14 @@ async function playTrack(key, duration, title, artist, o = 0, albumKey = false, 
 	}
 	offset = o;
 
-	const playerControler = document.getElementById("playerControler");
+	const playerController = document.getElementById("playerController");
 
 	const player = document.getElementById("player");
-	playerControler.currentTime = 0;
+	playerController.currentTime = 0;
 
 	player.src = "https://192.168.1.2:32400/video/:/transcode/universal/start.m3u8?maxVideoBitrate=128&X-Plex-Platform=Chrome&copyts=1&offset=" + offset + "&path=http%3A%2F%2F192.168.1.2%3A32400%2Flibrary%2Fmetadata%2F" + key + "&mediaIndex=0&videoResolution=1280x720&X-Plex-Token=VQtcZgf2mLWgydAs-uRH";
-	playerControler.load();
-	playerControler.play();
+	playerController.load();
+	playerController.play();
 
 	playerUpdate = setInterval(checkSongTime, 1000);
 
@@ -129,7 +129,7 @@ function search(term) {
 	}
 
 	for (let i = 0; i < foundAlbums.length; i = i + 1) {
-		allImages += '<div class="column"><div class="cover" onclick="albumPage(this, ' + foundAlbums[i].key + ');"><img class="lozad" loading="lazy" src="' + foundAlbums[i].cover + '" onerror="this.onerror=null; this.src=\'track.svg\'"></div><div class="info"><h2>' + foundAlbums[i].title + "</h2><p>" + foundAlbums[i].artist + "</p></div></div>";
+		allImages += '<div class="column"><div class="cover" onclick="albumPage(this, ' + foundAlbums[i].key + ');"><img class="loader" loading="lazy" src="' + foundAlbums[i].cover + '" onerror="this.onerror=null; this.src=\'track.svg\'"></div><div class="info"><h2>' + foundAlbums[i].title + "</h2><p>" + foundAlbums[i].artist + "</p></div></div>";
 	}
 
 	$("#searchGrid").html(allImages);
@@ -145,19 +145,19 @@ function applySeek() {
 
 function seek() {
 	console.log("dd");
-	document.getElementById("playerControler").removeEventListener("ended", nextTrack);
+	document.getElementById("playerController").removeEventListener("ended", nextTrack);
 	clearInterval(playerUpdate);
 }
 
 function checkSongTime() {
-	const playerControler = document.getElementById("playerControler");
+	const playerController = document.getElementById("playerController");
 
 	const player = document.getElementById("player");
 
-	document.getElementById("songProgress").value = playerControler.currentTime + offset;
+	document.getElementById("songProgress").value = playerController.currentTime + offset;
 	document.getElementById("songProgress").max = curDur;
 
-	document.getElementById("curTime").innerHTML = timeConverter(playerControler.currentTime + offset);
+	document.getElementById("curTime").innerHTML = timeConverter(playerController.currentTime + offset);
 }
 
 function timeConverter(UNIX_timestamp) {
@@ -259,11 +259,11 @@ function nextTrack() {
 }
 
 function playPause() {
-	const playerControler = document.getElementById("playerControler");
-	if (playerControler.paused) {
-		playerControler.play();
-	} else if (!playerControler.paused) {
-		playerControler.pause();
+	const playerController = document.getElementById("playerController");
+	if (playerController.paused) {
+		playerController.play();
+	} else if (!playerController.paused) {
+		playerController.pause();
 	}
 }
 
