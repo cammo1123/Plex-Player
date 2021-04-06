@@ -11,7 +11,7 @@
 		<script src="./scripts/jquery.min.js"></script>
 		<script src="./scripts/lozad.min.js"></script>
 		<script src="./scripts/script.js"></script>
-
+		<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
 		<link href="./styles/style.css" rel="stylesheet" type="text/css" />
 
 		<!-- Insert this line after script imports -->
@@ -38,7 +38,9 @@
 			<div class="trackList"></div>
 		</div>
 		<div id="albumsView">
+			<input type="text" id="gsearch" name="gsearch">
 			<div id="grid"></div>
+			<div id="searchGrid"></div>
 		</div>
 		<div>
 			<audio
