@@ -29,8 +29,7 @@
 		"fs": "0.0.1-security",
 		"fs-extra": "^9.0.1",
 		"plex-api": "^5.3.1",
-		"systeminformation": "^4.33.4",
-		"ws": "^7.4.1",
-		"prettier": "^2.2.1"
+		"systeminformation": "^5.6.10",
+		"ws": "^7.4.1"
 	}
 }

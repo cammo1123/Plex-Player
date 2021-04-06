@@ -1,6 +1,0 @@
-# Ignore artifacts:
-build
-coverage
-FrontEnd/scripts
-FrontEnd/styles
-.github/workflows/format.yml
