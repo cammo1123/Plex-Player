@@ -1,0 +1,34 @@
+{
+	"name": "plexplayer",
+	"version": "0.0.1",
+	"description": "A Simple Music Player for Plex Servers",
+	"main": "index.js",
+	"scripts": {
+		"test": "electron ./src/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/cammo1123/PlexPlayer.git"
+	},
+	"keywords": [
+		"Music",
+		"Plex"
+	],
+	"author": "Cameron Youell",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/cammo1123/PlexPlayer/issues"
+	},
+	"homepage": "https://github.com/cammo1123/PlexPlayer#readme",
+	"dependencies": {
+		"carlo": "^0.9.46",
+		"dotenv": "^8.2.0",
+		"electron": "^12.0.2",
+		"env": "0.0.2",
+		"fs": "0.0.1-security",
+		"fs-extra": "^9.0.1",
+		"plex-api": "^5.3.1",
+		"systeminformation": "^4.33.4",
+		"ws": "^7.4.1"
+	}
+}

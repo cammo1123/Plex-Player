@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<link href="./styles/album.css" rel="stylesheet" type="text/css" />
+		<title>Plex Player</title>
+		<script>
+			// const observer = lozad();
+			// observer.observe();
+
+			function timeConverter(UNIX_timestamp) {
+				var a = new Date(UNIX_timestamp * 1000);
+				var months = [
+					"Jan",
+					"Feb",
+					"Mar",
+					"Apr",
+					"May",
+					"Jun",
+					"Jul",
+					"Aug",
+					"Sep",
+					"Oct",
+					"Nov",
+					"Dec",
+				];
+				var year = a.getFullYear();
+				var month = months[a.getMonth()];
+				var date = a.getDate();
+				var hour = a.getHours();
+				var min = a.getMinutes();
+				var sec = a.getSeconds();
+				if (sec < 10) {
+					sec = "0" + sec;
+				}
+				var time = min + ":" + sec;
+				return time;
+			}
+
+			async function onload() {
+				const data = await getTracks();
+
+				let allImages = "";
+
+				for (let i = 0; i < data.length; i = i + 1) {
+					const time = timeConverter(data[i].duration / 1000);
+
+					allImages +=
+						`<div class="listRow" onclick="playTrack(` +
+						data[i].key +
+						`)">
+				<div class="trackNum"><span>` +
+						data[i].number +
+						`</span></div>
+				<div class="trackName"><span>` +
+						data[i].title +
+						`</span></div>
+				<div class="trackDur"><span>` +
+						time +
+						`</span></div>
+			</div>`;
+					//console.log(allImages);
+				}
+
+				$(".trackList").append(allImages);
+			}
+
+			function playTrack(key) {
+				const playerControler = document.getElementById(
+					"playerControler"
+				);
+
+				const player = document.getElementById("player");
+				playerControler.currentTime = 0;
+
+				player.src =
+					"https://192.168.1.2:32400/video/:/transcode/universal/start.m3u8?maxVideoBitrate=128&X-Plex-Platform=Chrome&copyts=1&offset=0&path=http%3A%2F%2F192.168.1.2%3A32400%2Flibrary%2Fmetadata%2F" +
+					key +
+					"&mediaIndex=0&videoResolution=1280x720&X-Plex-Token=VQtcZgf2mLWgydAs-uRH";
+				playerControler.load();
+				playerControler.play();
+			}
+
+			// function createChild(parent, tag, className) {
+			// 	const elem = document.createElement(tag);
+			// 	if (className) elem.className = className;
+			// 	parent.appendChild(elem);
+			// 	return elem;
+			// }
+
+			// async function albumPage(ele, key) {
+			// 	const data = await gotoAlbum(key);
+			// 	console.log(data);
+			// }
+			function gotoAlbums() {}
+		</script>
+		<style></style>
+	</head>
+
+	<body onload="onload()">
+		<audio id="playerControler" controls="" name="media">
+			<source
+				id="player"
+				src="https://192.168.1.2:32400/video/:/transcode/universal/start.m3u8?maxVideoBitrate=128&X-Plex-Platform=Chrome&amp;copyts=1&amp;offset=0&amp;path=http%3A%2F%2F127.0.0.1%3A32400%2Flibrary%2Fmetadata%2F6888&amp;mediaIndex=0&amp;videoResolution=1280x720&X-Plex-Token=VQtcZgf2mLWgydAs-uRH"
+				type="audio/mpeg"
+			/>
+		</audio>
+		<button onclick="gotoAlbums()">Back</button>
+		<div class="trackList"></div>
+	</body>
+</html>
