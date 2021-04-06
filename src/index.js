@@ -48,7 +48,9 @@ app.whenReady().then(() => {
 });
 
 async function getAllAlbums(index) {
-	const query = await client.query("/library/sections/" + index + "/search?type=9");
+	const query = await client.query(
+		"/library/sections/" + index + "/search?type=9"
+	);
 	const response = query.MediaContainer;
 
 	let val;

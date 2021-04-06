@@ -1,3 +1,3 @@
 # Plex-Player
 
-``PLEX_TOKEN="TOKEN HERE"``
+`PLEX_TOKEN="TOKEN HERE"`

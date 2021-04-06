@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "electron ./src/",
-		"format": "run format"
+		"format": "prettier --write ."
 	},
 	"repository": {
 		"type": "git",
