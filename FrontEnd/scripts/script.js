@@ -207,9 +207,9 @@ async function albumPage(ele, key) {
 			`, ` +
 			songData[i].duration +
 			`,'` +
-			songData[i].title.replace("'", "\\'") +
+			songData[i].title.split("'").join("\\'") +
 			`', '` +
-			songData[i].artist.replace("'", "\\'") +
+			songData[i].artist.split("'").join("\\'") +
 			`', 0,'` +
 			data.info.key +
 			`', '` +
@@ -227,7 +227,7 @@ async function albumPage(ele, key) {
 			</div>`;
 	}
 
-	$(".albumButtons").html(`<button class="listRow" onclick="playTrack(` + songData[0].key + `, ` + songData[0].duration + `,'` + songData[0].title.replace("'", "\\'") + `', '` + songData[0].artist.replace("'", "\\'") + `', 0,'` + data.info.key + `', '` + 0 + `')">Play</button>`);
+	$(".albumButtons").html(`<button class="listRow" onclick="playTrack(` + songData[0].key + `, ` + songData[0].duration + `,'` + songData[0].title.split("'").join("\\'") + `', '` + songData[0].artist.split("'").join("\\'") + `', 0,'` + data.info.key + `', '` + 0 + `')">Play</button>`);
 	$(".albumImage").attr("src", data.info.src);
 	$(".albumTitle").html(data.info.title);
 	$(".albumArtist").html(data.info.artist);
