@@ -2,7 +2,7 @@ const PlexAPI = require("plex-api");
 const path = require("path");
 const { ipcMain, app, BrowserWindow } = require("electron");
 
-app.commandLine.appendSwitch('ignore-certificate-errors', 'true');
+app.commandLine.appendSwitch("ignore-certificate-errors", "true");
 
 const hostname = "192.168.1.2";
 
@@ -19,21 +19,21 @@ function createWindow() {
 			nodeIntegration: true,
 			contextIsolation: false,
 			enableRemoteModule: true,
-			webSecurity: false
+			webSecurity: false,
 		},
 	});
-	
+
 	win.loadFile("../FrontEnd/index.html");
 }
 
-exposeFunction("getAlbums", getAlbums)
-exposeFunction("gotoAlbum", gotoAlbum)
-exposeFunction("getTracks", getTracks)
+exposeFunction("getAlbums", getAlbums);
+exposeFunction("gotoAlbum", gotoAlbum);
+exposeFunction("getTracks", getTracks);
 
 function exposeFunction(name, exposedFunction) {
 	ipcMain.handle(name, async (event, ...args) => {
 		const res = await exposedFunction(...args);
-		return res
+		return res;
 	});
 }
 
