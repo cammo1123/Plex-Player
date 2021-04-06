@@ -109,7 +109,10 @@ async function playTrack(key, duration, title, artist, o = 0, albumKey = false, 
 function search(term) {
 	const options = {
 		includeScore: true,
-		keys: [{name:"title", weight:0.5}, {name: "artist", weight:0.5}],
+		keys: [
+			{ name: "title", weight: 0.5 },
+			{ name: "artist", weight: 0.5 },
+		],
 	};
 
 	const fuse = new Fuse(allAlbums, options);
@@ -120,7 +123,7 @@ function search(term) {
 	let foundAlbums = [];
 
 	for (const album in result) {
-		if (result[album]["score"] < .5) {
+		if (result[album]["score"] < 0.5) {
 			foundAlbums.push(result[album]["item"]);
 		}
 	}

@@ -38,30 +38,18 @@
 			<div class="trackList"></div>
 		</div>
 		<div id="albumsView">
-			<input type="text" id="gsearch" name="gsearch">
+			<input type="text" id="gsearch" name="gsearch" />
 			<div id="grid"></div>
 			<div id="searchGrid"></div>
 		</div>
 		<div>
-			<audio
-				style="display: none"
-				id="playerControler"
-				controls=""
-				name="media"
-			>
+			<audio style="display: none" id="playerControler" controls="" name="media">
 				<source id="player" type="audio/mpeg" />
 			</audio>
 
 			<div class="player">
 				<div class="curTime" id="curTime">0:00</div>
-				<input
-					id="songProgress"
-					type="range"
-					min="0"
-					max="1000"
-					value="0"
-					id="slidebar"
-				/>
+				<input id="songProgress" type="range" min="0" max="1000" value="0" id="slidebar" />
 				<div class="endTime" id="endTime">0:00</div>
 
 				<div class="title">
