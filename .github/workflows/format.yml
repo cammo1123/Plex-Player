@@ -1,22 +1,17 @@
 name: Format
-on:
-    [push]
+on: [push]
 jobs:
-    format:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.head_ref }}
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: "12.x"
-            - name: Format
-              run: |
-                  npm ci
-                  npm run format
-            - name: Commit changes
-              uses: stefanzweifel/git-auto-commit-action@v4.1.2
-              with:
-                  commit_message: Apply formatting changes
-                  branch: ${{ github.head_ref }}
+  build:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: bahmutov/npm-install@v1
+      - run: npm run format
+      - run: git status
+      # commit any changed files
+      # https://github.com/mikeal/publish-to-github-action
+      - uses: mikeal/publish-to-github-action@master
+        env:
+          # github token is automatically injected by GH Action
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
